@@ -1,0 +1,19 @@
+<h2>Productos</h2>
+
+<% if(productsArray.length > 0){ %>
+    <div>
+        <table>
+            <tr><th>Producto</th><th>Precio</th><th>Foto</th></tr>
+            <% for (const producto of productsArray) { %>
+            <tr>
+                <td><%=producto.title%></td>
+                <td><%=producto.price%></td>
+                <td><img src="<%=producto.thumbnail%>"></td>
+            </tr>
+            <%};%>
+        </table>
+    </div>
+    <% } else {%>
+        <h3>No hay datos</h3>
+    <%};%>
+

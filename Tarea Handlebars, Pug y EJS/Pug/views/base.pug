@@ -1,0 +1,20 @@
+extends inicio
+
+block base
+    if productsArray.length > 0
+        div
+            table
+                tr
+                    th="Producto"
+                    th="Precio" 
+                    th="Foto" 
+                each val in productsArray
+                    tr 
+                        td=val.title 
+                        td=val.price
+                        td
+                            img(src=val.thumbnail, alt="")
+    else
+        h3="No hay datos"
+
+

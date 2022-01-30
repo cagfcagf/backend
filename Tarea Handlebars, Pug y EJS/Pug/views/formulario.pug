@@ -1,0 +1,13 @@
+extends inicio
+
+block formulario
+    h2="Ingresa los datos"
+    form(action='/productos' method='post')
+        label(for='title') Nombre del producto
+        input#title(type='text' name='title')
+        label(for='price') Precio
+        input#price(type='number' name='price')
+        label(for='thumbnail') Link
+        input#thumbnail(type='text' name='thumbnail')
+        input(type='submit' value='')
+
