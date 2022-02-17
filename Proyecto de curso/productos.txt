@@ -1,0 +1,22 @@
+[
+    {
+        "name": "lavadora",
+        "timestamp": 16886168,
+        "description": "Soy una lavadora",
+        "code": 12345,
+        "stock": 10,
+        "price": 2990,
+        "thumbnail": "http://www.google.cl",
+        "id": 1
+    },
+    {
+        "name": "perro",
+        "timestamp": 341545,
+        "description": "Soy un perro",
+        "code": 684684,
+        "stock": 15,
+        "price": 5990,
+        "thumbnail": "http://www.google.cl",
+        "id": 2
+    }
+]
