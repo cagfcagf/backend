@@ -126,9 +126,9 @@ carrito.get('/:id/productos', function(req,res,next){
 
 carrito.post('/', function(req,res,next){
     const cartAdd = req.body
-    cartArray.push({...cartAdd, "id": id})
+    cartArray.push({...cartAdd, "id": idcart})
     fs.writeFileSync('./carro.txt', JSON.stringify(cartArray, null, 2));
-    res.send(id)
+    res.send(`${idcart}`)
     idcart++
 })
 
@@ -141,7 +141,14 @@ carrito.post('/:id/productos', function(req,res,next){
 
 carrito.delete('/:id/productos/:id_prod', function(req,res,next){
         
-    cartArray = arrayRemove(cartArray[req.params.id].productos, req.params.id_prod);
+    delete cartArray[req.params.id-1].productos[req.params.id_prod-1];
+    fs.writeFileSync('./carro.txt', JSON.stringify(cartArray, null, 2));
+    res.send(cartArray)
+})
+
+carrito.delete('/:id', function(req,res,next){
+        
+    delete cartArray[req.params.id-1];
     fs.writeFileSync('./carro.txt', JSON.stringify(cartArray, null, 2));
     res.send(cartArray)
 })
@@ -153,4 +160,9 @@ function arrayRemove(arr, value) {
         return ele.id != value; 
     });
 }
+
+
+
+
+
 
