@@ -48,9 +48,21 @@ productos.get('/:id', function(req,res,next){
 })
 
 productos.post('/', function(req,res,next){
+
+    
+
     if(admin) {
-        const productAdd = req.body
-    productsArray.push({...productAdd, "id": id})
+    const productAdd = req.body
+    productsArray.push({
+        "name": req.body.name,
+        "timestamp": today,
+        "description": req.body.description,
+        "code": req.body.code,
+        "stock": req.body.stock,
+        "price": req.body.price,
+        "thumbnail": req.body.thumbnail,
+        "id": id
+        })
     id++
     fs.writeFileSync('./productos.txt', JSON.stringify(productsArray, null, 2));
     res.send(productsArray)
