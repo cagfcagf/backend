@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "express": "^4.17.3",
+    "http": "^0.0.1-security",
+    "socket.io": "^4.4.1",
+    "knex": "^1.0.3",
+    "mysql": "^2.18.1",
+    "node": "^17.4.0"
+  }
+}

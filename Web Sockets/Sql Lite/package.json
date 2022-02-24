@@ -1,0 +1,17 @@
+{
+  "scripts": {
+    "start": "node create_table.js"
+  },
+  "dependencies": {
+    "express": "^4.17.3",
+    "http": "^0.0.1-security",
+    "socket.io": "^4.4.1",
+    "knex": "^0.95.15",
+    "sqlite3": "^5.0.2",
+    "node": "^17.4.0"
+  }
+}
+
+
+
+
