@@ -1,6 +1,6 @@
 const express = require('express')
 const { Router } = express
-const fs = require ('fs')
+const fs = require('fs')
 
 const PORT = 8080 || process.env.PORT
 
@@ -9,7 +9,7 @@ const productos = Router()
 const carrito = Router()
 
 app.use(express.json())
-app.use(express.urlencoded({extended: true}))
+app.use(express.urlencoded({ extended: true }))
 
 const today = Date.now()
 
@@ -34,135 +34,149 @@ app.listen(PORT, () => {
 
 // Productos
 
-productos.get('/:id', function(req,res,next){
-    
-  
+productos.get('/', function (req, res, next) {
 
-    if (productsArray.find(archivo => archivo.id == req.params.id) == null) {
-        res.send({ error : 'producto no encontrado' })
-    } else {        
-    res.send(productsArray.find(archivo => archivo.id == req.params.id))
-    }
+    res.send(productsArray)
 
-   
 })
 
-productos.post('/', function(req,res,next){
+productos.get('/:id', function (req, res, next) {
 
-    
+    if (productsArray.find(archivo => archivo.id == req.params.id) == null) {
+        res.send({ error: 'producto no encontrado' })
+    } else {
+        res.send(productsArray.find(archivo => archivo.id == req.params.id))
+    }
 
-    if(admin) {
-    const productAdd = req.body
-    productsArray.push({
-        "name": req.body.name,
-        "timestamp": today,
-        "description": req.body.description,
-        "code": req.body.code,
-        "stock": req.body.stock,
-        "price": req.body.price,
-        "thumbnail": req.body.thumbnail,
-        "id": id
+})
+
+productos.post('/', function (req, res, next) {
+
+    if (admin) {
+        const productAdd = req.body
+        productsArray.push({
+            "name": req.body.name,
+            "timestamp": today,
+            "description": req.body.description,
+            "code": req.body.code,
+            "stock": req.body.stock,
+            "price": req.body.price,
+            "thumbnail": req.body.thumbnail,
+            "id": id
         })
-    id++
-    fs.writeFileSync('./productos.txt', JSON.stringify(productsArray, null, 2));
-    res.send(productsArray)
+        id++
+        fs.writeFileSync('./productos.txt', JSON.stringify(productsArray, null, 2));
+        res.send(productsArray)
     } else {
         res.send("No tienes permiso")
     }
 })
 
-productos.put('/:id', function(req,res,next){
-    
+productos.put('/:id', function (req, res, next) {
+
     if (admin) {
-        const id = req.params.id - 1
-        productsArray[id].name = req.body.name
-        productsArray[id].timestamp = today
-        productsArray[id].description = req.body.description
-        productsArray[id].code = req.body.code
-        productsArray[id].stock = req.body.stock
-        productsArray[id].price = req.body.price
-        productsArray[id].thumbnail = req.body.thumbnail
+        let id = productsArray.findIndex(x => x.id == req.params.id);
+        if (req.body.name != undefined) {
+            productsArray[id].name = req.body.name
+        }
+        if (req.body.description != undefined) {
+            productsArray[id].description = req.body.description
+        }
+        if (req.body.code != undefined) {
+            productsArray[id].code = req.body.code
+        }
+        if (req.body.stock != undefined) {
+            productsArray[id].stock = req.body.stock
+        }
+        if (req.body.price != undefined) {
+            productsArray[id].price = req.body.price
+        }
+        if (req.body.thumbnail != undefined) {
+            productsArray[id].thumbnail = req.body.thumbnail
+        }
+
         fs.writeFileSync('./productos.txt', JSON.stringify(productsArray, null, 2));
         res.send(productsArray)
 
     } else {
         res.send("No tienes permiso")
     }
-
-
 })
 
 
-productos.delete('/:id', function(req,res,next){
+productos.delete('/:id', function (req, res, next) {
 
-    if(admin) {
+    if (admin) {
 
-        productsArray = arrayRemove(productsArray, req.params.id);
+        productsArray = productsArray.filter(x => x.id != req.params.id)
         fs.writeFileSync('./productos.txt', JSON.stringify(productsArray, null, 2));
-    res.send(productsArray)
+        res.send(productsArray)
 
     } else {
         res.send("No tienes permiso")
     }
-        
-
 })
 
 
 
 // Carrito
 
-carrito.get('/:id/productos', function(req,res,next){
-    
+/*GET: '/:id/productos' - Me permite listar todos los productos guardados en el carrito  OK*/
+
+carrito.get('/:id/productos', function (req, res, next) {
 
     if (cartArray.find(archivo => archivo.id == req.params.id) == null) {
-        res.send({ error : 'producto no encontrado' })
-    } else {        
+        res.send({ error: 'producto no encontrado' })
+    } else {
         res.send(cartArray.find(archivo => archivo.id == req.params.id).productos)
     }
 
-   
 })
 
-carrito.post('/', function(req,res,next){
+/*POST: '/' - Crea un carrito y devuelve su id. OK*/
+
+carrito.post('/', function (req, res, next) {
+
     const cartAdd = req.body
-    cartArray.push({...cartAdd, "id": idcart})
+    cartArray.push({ ...cartAdd, "id": idcart })
     fs.writeFileSync('./carro.txt', JSON.stringify(cartArray, null, 2));
     res.send(`${idcart}`)
     idcart++
+
 })
 
-carrito.post('/:id/productos', function(req,res,next){
+/*POST: '/:id/productos' - Para incorporar productos al carrito por su id de producto OK */
+
+carrito.post('/:id/productos', function (req, res, next) {
+
     const cartAdd = req.body
-    cartArray.productos.push({...cartAdd, "id": req.params.id})
+    cartArray[0].productos.push({ ...cartAdd, "id": req.params.id })
     fs.writeFileSync('./carro.txt', JSON.stringify(cartArray, null, 2));
+
 })
 
+/*DELETE: '/:id/productos/:id_prod' - Eliminar un producto del carrito por su id de carrito y de producto OK*/
 
-carrito.delete('/:id/productos/:id_prod', function(req,res,next){
-        
-    delete cartArray[req.params.id-1].productos[req.params.id_prod-1];
+carrito.delete('/:id/productos/:id_prod', function (req, res, next) {
+
+    const index_cart = cartArray.findIndex(x => x.id == req.params.id)
+    const index_product = cartArray[index_cart].productos.findIndex(x => x.id == req.params.id_prod)
+
+    cartArray[index_cart].productos.splice(index_product, 1);
+
     fs.writeFileSync('./carro.txt', JSON.stringify(cartArray, null, 2));
     res.send(cartArray)
 })
 
-carrito.delete('/:id', function(req,res,next){
-        
-    delete cartArray[req.params.id-1];
+/*DELETE: '/:id' - Vacía un carrito y lo elimina. OK*/
+
+carrito.delete('/:id', function (req, res, next) {
+
+    cartArray = cartArray.filter(x => x.id != req.params.id)
     fs.writeFileSync('./carro.txt', JSON.stringify(cartArray, null, 2));
     res.send(cartArray)
-})
-
-
-function arrayRemove(arr, value) { 
     
-    return arr.filter(function(ele){ 
-        return ele.id != value; 
-    });
-}
-
-
-
+})
 
 
 
