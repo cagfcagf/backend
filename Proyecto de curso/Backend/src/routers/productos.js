@@ -16,7 +16,8 @@ import productosApi from "../daos/producto/productoDaoMongo.js"
 
 productos.get('/', function (req, res, next) {
 
-    productosApi.readAll()
+    res.send(productosApi.readAll())
+   
 
 })
 

@@ -1,8 +1,10 @@
 import { Router } from "express"
 const carrito = Router()
-import fs from 'fs'
 
-import carroApi from "../daos/carrito/carritoDaoArchivo.js";
+
+//import carroApi from "../daos/carrito/carritoDaoArchivo.js";
+
+import carroApi from "../daos/carrito/carritoDaoMongo.js";
 
 
 

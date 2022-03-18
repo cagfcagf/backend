@@ -1,4 +1,4 @@
-import ContenedorArchivo from "../../contenedores/contenedorMongo";
+import ContenedorArchivo from "../../contenedores/contenedorMongoProductos";
 import config from "../../config";
 
 
