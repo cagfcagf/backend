@@ -1,0 +1,60 @@
+[
+  {
+    "id": 1,
+    "timestamp": 4917971971,
+    "productos": [
+      {
+        "name": "lavadora",
+        "timestamp": 466146,
+        "description": "Soy una lavadora",
+        "code": 12345,
+        "stock": 10,
+        "price": 2990,
+        "thumbnail": "http://www.google.cl",
+        "id": 1
+      },
+      {
+        "name": "lavadora",
+        "timestamp": 466146,
+        "description": "Soy una lavadora",
+        "code": 12345,
+        "stock": 10,
+        "price": 2990,
+        "thumbnail": "http://www.google.cl",
+        "id": 2
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "timestamp": 4917971971,
+    "productos": [
+      {
+        "name": "lavadora",
+        "timestamp": 466146,
+        "description": "Soy una lavadora",
+        "code": 12345,
+        "stock": 10,
+        "price": 2990,
+        "thumbnail": "http://www.google.cl",
+        "id": 1
+      },
+      {
+        "name": "lavadora",
+        "timestamp": 466146,
+        "description": "Soy una lavadora",
+        "code": 12345,
+        "stock": 10,
+        "price": 2990,
+        "thumbnail": "http://www.google.cl",
+        "id": 2
+      }
+    ]
+  },
+  {
+    "id": 3
+  },
+  {
+    "id": 4
+  }
+]

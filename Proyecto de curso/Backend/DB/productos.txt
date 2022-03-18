@@ -1,0 +1,32 @@
+[
+  {
+    "name": "lavadora 2",
+    "timestamp": 466146,
+    "description": "Soy una lavadora",
+    "code": 12345,
+    "stock": 10,
+    "price": 2990,
+    "thumbnail": "http://www.google.cl",
+    "id": 2
+  },
+  {
+    "name": "lavadora3",
+    "timestamp": 1647532375325,
+    "description": "Soy una lavadora",
+    "code": 12345,
+    "stock": 10,
+    "price": 2990,
+    "thumbnail": "http://www.google.cl",
+    "id": 3
+  },
+  {
+    "name": "lavadora4",
+    "timestamp": 1647532375325,
+    "description": "Soy una lavadora",
+    "code": 12345,
+    "stock": 10,
+    "price": 2990,
+    "thumbnail": "http://www.google.cl",
+    "id": 4
+  }
+]
