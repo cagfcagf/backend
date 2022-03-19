@@ -1,5 +1,5 @@
 import express from 'express'
-import fs from 'fs'
+
 import cors from 'cors'
 
 import productos from './src/routers/productos.js'

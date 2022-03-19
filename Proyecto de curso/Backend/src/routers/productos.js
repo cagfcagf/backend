@@ -2,22 +2,18 @@ import { Router } from "express"
 const productos = Router()
 
 
-
-
-
-
-
-
 // import productosApi from "../daos/producto/productoDaoArchivo.js" 
 
-import productosApi from "../daos/producto/productoDaoMongo.js" 
+//import productosApi from "../daos/producto/productoDaoMongo.js" 
+
+import productosApi from "../daos/producto/productoDaoFirebase.js"
 
 // Productos
 
 productos.get('/', function (req, res, next) {
 
     res.send(productosApi.readAll())
-   
+
 
 })
 
