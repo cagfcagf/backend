@@ -1,0 +1,20 @@
+{
+  "scripts": {
+    "start": "node create_table.js"
+  },
+  "dependencies": {
+    "@faker-js/faker": "^6.0.0",
+    "connect-mongo": "^4.6.0",
+    "cookie-parser": "^1.4.6",
+    "ejs": "^3.1.6",
+    "express": "^4.17.3",
+    "express-session": "^1.17.2",
+    "fs": "^0.0.1-security",
+    "http": "^0.0.1-security",
+    "knex": "^0.95.15",
+    "node": "^17.4.0",
+    "normalizr": "^3.6.2",
+    "socket.io": "^4.4.1",
+    "sqlite3": "^5.0.2"
+  }
+}
